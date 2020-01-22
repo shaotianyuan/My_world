@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets.samples_generator import make_blobs,make_classification
 
-
-
 # 期望函数h(x)
 def inference(theta, data):
     pred_y = 1 / (1 + np.exp(np.dot(theta,data)))
@@ -12,7 +10,7 @@ def inference(theta, data):
 # 损失函数J(theta)
 def eval_loss(theta, data, label):
     pred_y = inference(theta, data)
-    loss_value = -(label * np.log(pred_y) + (1 - label) * np.log(1 - pred_y))
+    loss_value = (0 - label) * np.log(pred_y) - (1 - label) * np.log(1 - pred_y)
     return np.mean(loss_value)
 
 # 梯度下降
@@ -24,12 +22,9 @@ def step_gradient(pred_y, label, theta, data, lr):
 
 # 训练模型
 def train(data, label, batch_size, lr, max_iter):
-
     data_t = np.c_[np.ones(data.shape[0]), data].T
     theta = np.zeros(data_t.shape[0])
-    t = []
     for i in range(max_iter):
-        # plt.scatter(data[:, 0], data[:, 1], marker='o', c=label)
         batch_index = np.random.choice(len(label), batch_size)
         batch_data = data_t[:, batch_index]
         batch_label = label[batch_index]
@@ -39,11 +34,6 @@ def train(data, label, batch_size, lr, max_iter):
         print('------第{}次迭代------'.format(i))
         print('theta:{}'.format(theta))
         print('loss_value:{}'.format(loss_value))
-        # d = (theta[0] + theta[1] * data[:, 0]) / -theta[2]
-        # plt.plot(data[:, 0], d)
-        # plt.pause(0.1)
-        # plt.clf()
-        t.append(theta)
 
     return theta
 
@@ -53,8 +43,8 @@ def train(data, label, batch_size, lr, max_iter):
 def run():
     x, y = make_blobs(1000, 2, 2)
     theta = train(x, y, 160, 0.0001, 100)
-    plt.scatter(x[:,0],x[:,1],marker='o', c=y)
-    d = (theta[0] + theta[1] * x[:,0]) / -theta[2]
+    plt.scatter(x[:, 0],x[:, 1],marker='o', c=y)
+    d = (theta[0] + theta[1] * x[:, 0]) / -theta[2]
     plt.plot(x[:, 0], d)
     plt.show()
 
