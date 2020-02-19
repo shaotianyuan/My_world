@@ -4,7 +4,7 @@ from sklearn.datasets.samples_generator import make_blobs,make_classification
 
 # 期望函数h(x)
 def inference(theta, data):
-    pred_y = 1 / (1 + np.exp(np.dot(theta,data)))
+    pred_y = 1 / (1 + np.exp(-np.dot(theta,data)))
     return pred_y
 
 # 损失函数J(theta)

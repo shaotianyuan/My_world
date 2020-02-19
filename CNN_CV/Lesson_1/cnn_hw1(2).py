@@ -6,7 +6,7 @@ def my_show(i):
     plt.imshow(cv2.cvtColor(i, cv2.COLOR_BGR2RGB))
     plt.show()
 
-img = cv2.imread('homework.jpeg')
+img = cv2.imread('/Users/sty/PycharmProjects/My_world/CNN_CV/Lesson_1/Data/homework.jpeg')
 
 bg_color = [188,129,36]
 
