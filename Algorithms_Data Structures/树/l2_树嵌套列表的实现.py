@@ -46,7 +46,9 @@ def getrightChild(root):
     return root[2]
 
 r = BinaryTree(3)
+print(r)
 insertLeft(r,4)
+print(r)
 insertLeft(r,5)
 print(r)
 a = r.pop(1)
