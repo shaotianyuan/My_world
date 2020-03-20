@@ -1,8 +1,6 @@
-import queue
+m = 3
+n = 2
 
-a = queue.Queue()
+a = [[0 for i in range(n)] for j in range(m)]
 
-a.put(3)
-a.put(4)
-a.get()
 print(a)
